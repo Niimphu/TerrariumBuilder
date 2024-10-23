@@ -1,0 +1,180 @@
+[gd_scene load_steps=16 format=3 uid="uid://c273c2dpor8y5"]
+
+[ext_resource type="Script" path="res://scenes/entities/Blueprint.gd" id="1_o11tt"]
+[ext_resource type="Texture2D" uid="uid://deqqrk7wj4v0g" path="res://assets/images/Layer 1.png" id="1_w7urx"]
+[ext_resource type="Texture2D" uid="uid://gcuiawdic8i8" path="res://assets/images/Layer 5.png" id="2_673g4"]
+[ext_resource type="Texture2D" uid="uid://ckidnxnctbyp1" path="res://assets/images/Layer 6.png" id="4_km64h"]
+[ext_resource type="Script" path="res://scenes/entities/test_object.gd" id="5_h0rax"]
+[ext_resource type="PackedScene" uid="uid://butt7kl6w7gv0" path="res://scenes/entities/test_piece.tscn" id="5_j6cws"]
+[ext_resource type="Texture2D" uid="uid://jwvice7mxmhr" path="res://assets/images/Layer 3.png" id="6_0vsyl"]
+[ext_resource type="Texture2D" uid="uid://b5htktkpism55" path="res://assets/images/Layer 4.png" id="7_nnomh"]
+[ext_resource type="Script" path="res://scenes/entities/test_slot.gd" id="9_0p8jg"]
+[ext_resource type="Script" path="res://scenes/entities/reset.gd" id="10_fr4rk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bktwg"]
+size = Vector2(20, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yc1ax"]
+size = Vector2(96, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cv7om"]
+radius = 8.0
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_teg02"]
+radius = 8.0
+height = 48.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx2uo"]
+size = Vector2(15.5, 15.5)
+
+[node name="test" type="Node2D"]
+
+[node name="Blueprint" type="Node2D" parent="."]
+position = Vector2(5, 6)
+script = ExtResource("1_o11tt")
+
+[node name="Sprite2D" type="Sprite2D" parent="Blueprint"]
+position = Vector2(62, 61)
+texture = ExtResource("2_673g4")
+
+[node name="Area2D" type="Area2D" parent="Blueprint"]
+position = Vector2(10, 10)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blueprint/Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_bktwg")
+
+[node name="Table" type="Node2D" parent="."]
+position = Vector2(248, 117)
+
+[node name="Sprite2D" type="Sprite2D" parent="Table"]
+texture = ExtResource("1_w7urx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Table"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/StaticBody2D"]
+position = Vector2(0, 56)
+shape = SubResource("RectangleShape2D_yc1ax")
+
+[node name="Tray" type="Node2D" parent="."]
+position = Vector2(248, 184)
+
+[node name="Sprite2D" type="Sprite2D" parent="Tray"]
+texture = ExtResource("4_km64h")
+
+[node name="TestPiece1" parent="." instance=ExtResource("5_j6cws")]
+position = Vector2(252, 226)
+
+[node name="TestPiece2" type="CharacterBody2D" parent="."]
+position = Vector2(209, 225)
+script = ExtResource("5_h0rax")
+
+[node name="Sprite2D" type="Sprite2D" parent="TestPiece2"]
+position = Vector2(-8, -40)
+texture = ExtResource("6_0vsyl")
+
+[node name="Area2D" type="Area2D" parent="TestPiece2"]
+position = Vector2(-8, -40)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestPiece2/Area2D"]
+position = Vector2(8, 40)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_cv7om")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TestPiece2"]
+position = Vector2(-8, -40)
+polygon = PackedVector2Array(29, 33, 31, 33, 31, 35, 32, 35, 32, 45, 31, 45, 31, 47, 29, 47, 29, 48, -13, 48, -13, 47, -15, 47, -15, 45, -16, 45, -16, 35, -15, 35, -15, 33, -13, 33, -13, 32, 29, 32)
+
+[node name="TestPiece3" type="CharacterBody2D" parent="."]
+position = Vector2(293, 226)
+script = ExtResource("5_h0rax")
+
+[node name="Sprite2D" type="Sprite2D" parent="TestPiece3"]
+position = Vector2(-24, -8)
+texture = ExtResource("7_nnomh")
+
+[node name="Area2D" type="Area2D" parent="TestPiece3"]
+position = Vector2(-24, -8)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestPiece3/Area2D"]
+position = Vector2(24, 8)
+shape = SubResource("CapsuleShape2D_teg02")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TestPiece3"]
+position = Vector2(-24, -8)
+polygon = PackedVector2Array(28, -15, 30, -15, 30, -13.4, 32, -11.4, 31, 32, 17, 32, 16, -11.3, 18.5, -15, 20, -15, 20, -16, 28, -16)
+
+[node name="Slots" type="Node2D" parent="."]
+position = Vector2(224, 66)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Slots" groups=["test_slot"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9_0p8jg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slots/StaticBody2D"]
+shape = SubResource("RectangleShape2D_qx2uo")
+
+[node name="Polygon2D" type="Polygon2D" parent="Slots/StaticBody2D"]
+color = Color(1, 1, 1, 0.231373)
+polygon = PackedVector2Array(0, -5, -6, 0, 0, 6, 6, 0)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Slots" groups=["test_slot"]]
+position = Vector2(16, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9_0p8jg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slots/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_qx2uo")
+
+[node name="Polygon2D" type="Polygon2D" parent="Slots/StaticBody2D2"]
+color = Color(1, 1, 1, 0.231373)
+polygon = PackedVector2Array(0, -5, -6, 0, 0, 6, 6, 0)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Slots" groups=["test_slot"]]
+position = Vector2(32, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9_0p8jg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slots/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_qx2uo")
+
+[node name="Polygon2D" type="Polygon2D" parent="Slots/StaticBody2D3"]
+color = Color(1, 1, 1, 0.231373)
+polygon = PackedVector2Array(0, -5, -6, 0, 0, 6, 6, 0)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Slots" groups=["test_slot"]]
+position = Vector2(48, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9_0p8jg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slots/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_qx2uo")
+
+[node name="Polygon2D" type="Polygon2D" parent="Slots/StaticBody2D4"]
+color = Color(1, 1, 1, 0.231373)
+polygon = PackedVector2Array(0, -5, -6, 0, 0, 6, 6, 0)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 13.0
+offset_top = 318.0
+offset_right = 64.0
+offset_bottom = 349.0
+text = "Reset"
+script = ExtResource("10_fr4rk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="mouse_entered" from="Blueprint/Area2D" to="Blueprint" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Blueprint/Area2D" to="Blueprint" method="_on_area_2d_mouse_exited"]
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
