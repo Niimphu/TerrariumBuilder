@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ouiirpchy2a5"]
+
+[ext_resource type="PackedScene" uid="uid://c11py0ubhswaq" path="res://globals/mouse_manager.tscn" id="1_7cddj"]
+[ext_resource type="PackedScene" uid="uid://bxcivud0ekinu" path="res://scenes/levels/the_griddy.tscn" id="1_ipj16"]
+[ext_resource type="PackedScene" uid="uid://pou6t3bli46w" path="res://scenes/entities/piece.tscn" id="2_gr0i3"]
+
+[node name="test2" type="Node2D"]
+
+[node name="MouseManager" parent="." instance=ExtResource("1_7cddj")]
+
+[node name="TheGriddy" parent="." instance=ExtResource("1_ipj16")]
+
+[node name="Piece" parent="." instance=ExtResource("2_gr0i3")]
+position = Vector2(25, 45)
+
+[node name="Piece2" parent="." instance=ExtResource("2_gr0i3")]
+position = Vector2(61, 44)

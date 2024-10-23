@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxcivud0ekinu"]
+[gd_scene load_steps=5 format=4 uid="uid://bxcivud0ekinu"]
 
-[sub_resource type="TileSet" id="TileSet_q3m6l"]
+[ext_resource type="Script" path="res://scenes/levels/the_griddy.gd" id="1_uhxj6"]
+[ext_resource type="Texture2D" uid="uid://oall1lq6y0jy" path="res://assets/images/BlankSquare.png" id="2_kmytk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cw7p8"]
+texture = ExtResource("2_kmytk")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_62wxj"]
 tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetAtlasSource_cw7p8")
 
 [node name="TheGriddy" type="Node2D"]
+script = ExtResource("1_uhxj6")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_q3m6l")
+[node name="PlayArea" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAADAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_62wxj")
