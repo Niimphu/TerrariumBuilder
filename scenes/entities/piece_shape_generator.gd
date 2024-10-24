@@ -5,10 +5,8 @@ extends Area2D
 
 func update_shape() -> void:
 	var collider := get_node_or_null("CollisionPolygon2D")
-	while collider:
+	if collider:
 		collider.queue_free()
-		collider = null
-		collider = get_node_or_null("CollisionPolygon2D")
 	if !sprite.texture:
 		return
 	print_debug("New Sprite2D texture yippie")

@@ -2,11 +2,11 @@ extends Node2D
 
 class_name Piece
 
-@export var centre: Vector2i
-
 @onready var shape := $Shape
 @onready var shape_collider := $Shape/CollisionPolygon2D
 @onready var initial_pos = global_position
+
+@export var centre: Vector2i
 
 var hovering := false
 var placed := false
