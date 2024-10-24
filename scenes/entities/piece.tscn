@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://pou6t3bli46w"]
+[gd_scene load_steps=3 format=3 uid="uid://pou6t3bli46w"]
 
 [ext_resource type="Script" path="res://scenes/entities/piece.gd" id="1_uc4bq"]
+[ext_resource type="Script" path="res://scenes/entities/piece_shape_generator.gd" id="2_dq0dp"]
 
 [node name="Piece" type="Node2D"]
 script = ExtResource("1_uc4bq")
 
 [node name="Shape" type="Area2D" parent="."]
+script = ExtResource("2_dq0dp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Shape"]
 centered = false
+
+[connection signal="texture_changed" from="Shape/Sprite2D" to="Shape" method="update_shape"]

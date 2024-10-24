@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://global.gd"
 EventBus="*res://globals/bussin.gd"
+Game="*res://globals/game.gd"
 
 [display]
 

@@ -8,7 +8,7 @@ func _ready():
 func _physics_process(_delta):
 	if !current_piece:
 		return
-	current_piece.global_position = get_global_mouse_position()
+	current_piece.global_position = get_global_mouse_position() - Vector2(current_piece.centre)
 	if Input.is_action_just_released("click"):
 		EventBus.emit_signal("_piece_released")
 		current_piece = null
