@@ -1,21 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://pou6t3bli46w"]
+[gd_scene load_steps=2 format=3 uid="uid://pou6t3bli46w"]
 
 [ext_resource type="Script" path="res://scenes/entities/piece.gd" id="1_uc4bq"]
-[ext_resource type="Texture2D" uid="uid://oall1lq6y0jy" path="res://assets/images/BlankSquare.png" id="2_tukyi"]
 
-[node name="Piece" type="CharacterBody2D"]
+[node name="Piece" type="Node2D"]
 script = ExtResource("1_uc4bq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(4, 4)
-scale = Vector2(1.33, 1.33)
-texture = ExtResource("2_tukyi")
+[node name="Shape" type="Area2D" parent="."]
 
-[node name="MouseOverZone" type="Area2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MouseOverZone"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(4, 4)
-scale = Vector2(1.33, 1.33)
-polygon = PackedVector2Array(-3.00752, -3.00752, -3.00752, 3.00752, 3.00752, 3.00752, 3.00752, -3.00752)
+[node name="Sprite2D" type="Sprite2D" parent="Shape"]
+centered = false

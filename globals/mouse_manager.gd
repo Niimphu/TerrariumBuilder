@@ -14,7 +14,5 @@ func _physics_process(_delta):
 		current_piece = null
 
 func grab_piece(clicked_piece: Piece) -> void:
-	print("bash")
 	if !current_piece:
-		print("bosh")
 		current_piece = clicked_piece

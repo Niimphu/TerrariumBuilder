@@ -2,31 +2,24 @@ extends Node2D
 
 class_name Piece
 
-@onready var collider := $CollisionPolygon2D
-@onready var mouse_zone := $MouseOverZone
-@onready var mouse_zone_collider := $MouseOverZone/CollisionPolygon2D
+@onready var shape := $Shape
+@onready var shape_collider := $Shape/CollisionPolygon2D
 @onready var initial_pos = global_position
 
 var hovering := false
 var placed := false
 
 func _ready():
-	mouse_zone_collider.polygon = collider.polygon
-	mouse_zone_collider.position = collider.position
-	mouse_zone_collider.scale = collider.scale
-	
-	
-	mouse_zone.connect("mouse_entered", mouse_entered)
-	mouse_zone.connect("mouse_exited", mouse_exited)
+	shape.connect("mouse_entered", mouse_entered)
+	shape.connect("mouse_exited", mouse_exited)
 	EventBus.connect("_piece_released", mouse_depressed)
-	collider.disabled = true
 
 
 func _process(_delta):
 	#bla bla
 	if hovering and Input.is_action_just_pressed("click"):
 		if EventBus.get_signal_connection_list("_piece_clicked").is_empty():
-			print_debug("Signal not connected. Is MouseManager instanced in parent scene??")
+			print_debug("Signal not connected, loser. Is MouseManager instanced in parent scene??")
 		EventBus.emit_signal("_piece_clicked", self)
 
 
